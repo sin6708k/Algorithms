@@ -1,15 +1,16 @@
 # 동전 0
 # https://www.acmicpc.net/problem/11047
 from sys import stdin
+from heapq import heapify, heappop
 
 
 def count_coin(money: int) -> int:
-    global coin_iter
+    global coins
 
     if money == 0:
         return 0
 
-    coin = next(coin_iter)
+    _, coin = heappop(coins)
     if coin > money:
         return count_coin(money)
 
@@ -19,8 +20,9 @@ def count_coin(money: int) -> int:
 
 if __name__ == '__main__':
     N, K = map(int, stdin.readline().split())
-    coin_iter = iter(sorted([int(stdin.readline())
-                             for _ in range(N)],
-                            reverse=True))
+    coins = [(-coin, coin)
+             for coin in (int(stdin.readline())
+                          for _ in range(N))]
+    heapify(coins)
 
     print(count_coin(K))

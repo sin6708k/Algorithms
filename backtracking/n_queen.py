@@ -4,7 +4,7 @@ from sys import stdin
 
 
 def can_place(x: int, y: int) -> bool:
-    if placed_on_cols[x]:
+    if x in placed_on_cols:
         return False
     if any(abs(x - board[i]) == (abs(y - i)) for i in range(y)):
         return False
@@ -23,15 +23,15 @@ def place(y: int):
 
     for x in range(N):
         if can_place(x, y):
-            placed_on_cols[x] = True
+            placed_on_cols.add(x)
             board[y] = x
             place(y + 1)
-            placed_on_cols[x] = False
+            placed_on_cols.remove(x)
 
 
 if __name__ == '__main__':
     N = int(stdin.readline())
-    placed_on_cols = [False] * N
+    placed_on_cols = set()
     board = [0] * N
     count = 0
 
