@@ -1,6 +1,7 @@
 # 플로이드
 # https://www.acmicpc.net/problem/11404
 from sys import stdin
+from itertools import product, islice
 
 
 if __name__ == '__main__':
@@ -15,11 +16,10 @@ if __name__ == '__main__':
         v, u, w = map(int, stdin.readline().split())
         graph[v][u] = min(graph[v][u], w)
 
-    for k in range(1, N + 1):
-        for v in range(1, N + 1):
-            for u in range(1, N + 1):
-                graph[v][u] = min(graph[v][u], graph[v][k] + graph[k][u])
+    for k, v, u in product(range(1, N + 1), repeat=3):
+        graph[v][u] = min(graph[v][u], graph[v][k] + graph[k][u])
 
-    print('\n'.join(' '.join(map(str, (w if w < W else 0
-                                       for w in edge[1:])))
-                    for edge in graph[1:]))
+    print('\n'.join(' '.join(map(str,
+                                 (w if w < W else 0
+                                  for w in islice(edge, 1, None))))
+                    for edge in islice(graph, 1, None)))
