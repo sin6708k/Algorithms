@@ -12,7 +12,6 @@ def compress(data: list[str]) -> str:
     mid = len(data) // 2
     top = data[:mid]
     bot = data[mid:]
-
     return ''.join([
         '(',
         compress([row[:mid] for row in top]),

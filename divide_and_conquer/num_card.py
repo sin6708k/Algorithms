@@ -10,10 +10,11 @@ def exist(num: int, left: int, right: int) -> int:
         return 0
 
     mid = (left + right) // 2
+    mid_card = cards[mid]
 
-    if num == cards[mid]:
+    if num == mid_card:
         return 1
-    elif num < cards[mid]:
+    elif num < mid_card:
         return exist(num, left, mid)
     else:
         return exist(num, mid + 1, right)
@@ -25,5 +26,5 @@ if __name__ == '__main__':
     M = int(stdin.readline())
     nums = list(map(int, stdin.readline().split()))
 
-    print(' '.join(map(str,
-                       (exist(num, 0, N) for num in nums))))
+    print(' '.join(map(str, (exist(num, 0, N)
+                             for num in nums))))

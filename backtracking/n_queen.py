@@ -6,8 +6,9 @@ from sys import stdin
 def can_place(x: int, y: int) -> bool:
     if x in placed_on_cols:
         return False
-    if any(abs(x - board[i]) == (abs(y - i)) for i in range(y)):
-        return False
+    for i in range(y):
+        if abs(x - board[i]) == abs(y - i):
+            return False
     return True
 
 

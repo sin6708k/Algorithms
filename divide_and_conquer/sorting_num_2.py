@@ -10,7 +10,6 @@ def merge_sort(nums: list[int]) -> list[int]:
         return nums
 
     mid = n // 2
-
     left_nums = merge_sort(nums[:mid])
     right_nums = merge_sort(nums[mid:])
     return merge(left_nums, right_nums)
@@ -37,7 +36,6 @@ def merge(left_nums: list[int], right_nums: list[int]) -> list[int]:
         else:
             nums.append(right_nums[j])
             j += 1
-
     return nums
 
 

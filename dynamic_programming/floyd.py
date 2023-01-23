@@ -7,7 +7,7 @@ from itertools import product, islice
 if __name__ == '__main__':
     N = int(stdin.readline())
     M = int(stdin.readline())
-    W = 100000 * N
+    W = 100000 * N + 1
     graph = [[W if v != u else 0
               for u in range(N + 1)]
              for v in range(N + 1)]

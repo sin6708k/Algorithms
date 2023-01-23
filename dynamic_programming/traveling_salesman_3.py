@@ -5,7 +5,7 @@ from typing import Iterator
 from math import dist
 
 
-def bit(v: int):
+def bit(v: int) -> int:
     return 2 ** v
 
 
@@ -20,14 +20,14 @@ def bit_iter(bits: int) -> Iterator[int]:
 
 if __name__ == '__main__':
     N = int(stdin.readline())
-    VISITED_ALL = all_bits(N - 1)
     W = 1000000 * N + 1
+    VISITED_ALL = all_bits(N - 1)
+    START = 0
+
     points = [tuple(map(int, stdin.readline().split()))
               for _ in range(N)]
     cost_memo = [[W] * N
                  for i in range(VISITED_ALL + 1)]
-
-    START = 0
     cost_memo[bit(START)][START] = 0
 
     for visited in range(bit(START), VISITED_ALL + 1, 2):
