@@ -9,10 +9,10 @@ if __name__ == '__main__':
     boxes = list(map(int, stdin.readline().split()))
     count_memo = [0] * N
 
-    for i, box_i in enumerate(boxes):
-        count_memo[i] = max((count_j + 1
-                             for count_j, box_j in zip(islice(count_memo, i), boxes)
-                             if box_j < box_i),
+    for i in range(N):
+        count_memo[i] = max((count_memo[j] + 1
+                             for j in range(i)
+                             if boxes[j] < boxes[i]),
                             default=1)
 
     print(max(count_memo))
