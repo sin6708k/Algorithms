@@ -3,7 +3,9 @@
 from sys import stdin
 
 
-def merge(left_nums: list[int], right_nums: list[int]) -> list[int]:
+def merge() -> list[int]:
+    global left_nums
+    global right_nums
     n = len(left_nums)
     m = len(right_nums)
     i = 0
@@ -24,7 +26,6 @@ def merge(left_nums: list[int], right_nums: list[int]) -> list[int]:
         else:
             nums.append(right_nums[j])
             j += 1
-
     return nums
 
 
@@ -33,5 +34,4 @@ if __name__ == '__main__':
     left_nums = list(map(int, stdin.readline().split()))
     right_nums = list(map(int, stdin.readline().split()))
 
-    print(' '.join(map(str,
-                       merge(left_nums, right_nums))))
+    print(' '.join(map(str, merge())))
