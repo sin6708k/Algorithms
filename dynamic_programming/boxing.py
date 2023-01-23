@@ -6,7 +6,7 @@ from itertools import islice
 
 if __name__ == '__main__':
     N = int(stdin.readline())
-    boxes = list(map(int, input().split()))
+    boxes = list(map(int, stdin.readline().split()))
     count_memo = [0] * N
 
     for i, box_i in enumerate(boxes):
