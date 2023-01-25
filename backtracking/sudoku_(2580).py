@@ -24,29 +24,29 @@ def can_place(value: int, x: int, y: int) -> bool:
 
 def fill() -> bool:
     global table
-    global empty_points
+    global empty_cells
 
-    if not empty_points:
+    if not empty_cells:
         return True
-    x, y = empty_points[0]
+    x, y = empty_cells[0]
 
     for value in range(1, 10):
         if can_place(value, x, y):
             table[y][x] = value
-            empty_points.popleft()
+            empty_cells.popleft()
             if fill():
                 return True
             table[y][x] = 0
-            empty_points.appendleft((x, y))
+            empty_cells.appendleft((x, y))
     return False
 
 
 if __name__ == '__main__':
     table = [list(map(int, stdin.readline().split()))
              for _ in range(9)]
-    empty_points = deque([(x, y)
-                          for y in range(9) for x in range(9)
-                          if table[y][x] == 0])
+    empty_cells = deque([(x, y)
+                         for y in range(9) for x in range(9)
+                         if table[y][x] == 0])
 
     fill()
     print('\n'.join(' '.join(map(str, row))

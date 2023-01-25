@@ -4,20 +4,20 @@ from sys import stdin
 
 
 def move(index: int, origin: int, waypoint: int, dest: int):
-    global recode
+    global log
 
     if index == 0:
         return
 
     move(index - 1, origin, dest, waypoint)
-    recode.append('%d %d' % (origin, dest))
+    log.append('%d %d' % (origin, dest))
     move(index - 1, waypoint, origin, dest)
 
 
 if __name__ == '__main__':
     N = int(stdin.readline())
-    recode = []
+    log = []
 
     move(N, 1, 2, 3)
-    print(len(recode))
-    print('\n'.join(recode))
+    print(len(log))
+    print('\n'.join(log))
