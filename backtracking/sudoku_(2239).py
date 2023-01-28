@@ -1,53 +1,51 @@
 # 스도쿠
+# Gold IV
 # https://www.acmicpc.net/problem/2239
 from sys import stdin
-from collections import deque
 
 
-def can_place(value: int, x: int, y: int) -> bool:
-    global table
+def solution(table: list[list[int]]):
+    empty_cells = [(x, y)
+                   for y in range(8, -1, -1)
+                   for x in range(8, -1, -1)
+                   if table[y][x] == 0]
 
-    if value in table[y]:
-        return False
-    for i in range(9):
-        if value == table[i][x]:
+    def can_place(value: int, x: int, y: int) -> bool:
+        if value in table[y]:
             return False
-
-    top = y // 3 * 3
-    left = x // 3 * 3
-    for i in range(top, top + 3):
-        for j in range(left, left + 3):
-            if value == table[i][j]:
+        for i in range(9):
+            if value == table[i][x]:
                 return False
-    return True
 
-
-def fill() -> bool:
-    global table
-    global empty_cells
-
-    if not empty_cells:
+        top = y // 3 * 3
+        left = x // 3 * 3
+        for i in range(top, top + 3):
+            for j in range(left, left + 3):
+                if value == table[i][j]:
+                    return False
         return True
-    x, y = empty_cells[0]
 
-    for value in range(1, 10):
-        if can_place(value, x, y):
-            table[y][x] = value
-            empty_cells.popleft()
-            if fill():
-                return True
-            table[y][x] = 0
-            empty_cells.appendleft((x, y))
-    return False
+    def fill() -> bool:
+        if not empty_cells:
+            return True
+        x, y = empty_cells.pop()
+
+        for value in range(1, 10):
+            if can_place(value, x, y):
+                table[y][x] = value
+                if fill():
+                    return True
+                table[y][x] = 0
+
+        empty_cells.append((x, y))
+        return False
+
+    # BEGIN
+    fill()
+    return '\n'.join(''.join(map(str, row))
+                     for row in table)
 
 
 if __name__ == '__main__':
-    table = [list(map(int, stdin.readline().rstrip()))
-             for _ in range(9)]
-    empty_cells = deque([(x, y)
-                         for y in range(9) for x in range(9)
-                         if table[y][x] == 0])
-
-    fill()
-    print('\n'.join(''.join(map(str, row))
-                    for row in table))
+    print(solution(table=[list(map(int, stdin.readline().rstrip()))
+                          for _ in range(9)]))

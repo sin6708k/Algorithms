@@ -1,24 +1,27 @@
 # 단어 공부
+# Bronze I
 # https://www.acmicpc.net/problem/1157
 from sys import stdin
 from collections import Counter
 
 
-if __name__ == '__main__':
-    word = stdin.readline().rstrip().upper()
-    counter = Counter(word).most_common()
-    n = len(counter)
+def solution(words: str):
+    counter = Counter(words.upper()).most_common()
 
-    if n >= 2:
-        most_common_char, max_count = counter[0]
-        _, second_count = counter[1]
+    if len(counter) >= 2:
+        most_common_char, count_of_most_common = counter[0]
+        _, count_of_second_common = counter[1]
 
-        if max_count != second_count:
-            print(most_common_char)
+        if count_of_most_common != count_of_second_common:
+            return most_common_char
         else:
-            print('?')
-    elif n == 1:
-        most_common_char, max_count = counter[0]
-        print(most_common_char)
+            return '?'
+    elif len(counter) == 1:
+        most_common_char, _ = counter[0]
+        return most_common_char
     else:
-        print('?')
+        return '?'
+
+
+if __name__ == '__main__':
+    print(solution(words=stdin.readline().rstrip()))

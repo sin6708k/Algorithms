@@ -1,48 +1,49 @@
 # 수 정렬하기 2
+# Silver V
 # https://www.acmicpc.net/problem/2751
 from sys import stdin
 
 
-def merge_sort(nums: list[int]) -> list[int]:
-    n = len(nums)
+def params():
+    N = int(stdin.readline())
+    all_nums = [int(stdin.readline())
+                for _ in range(N)]
+    return N, all_nums
 
-    if n == 1:
+
+# Implemented by merge sort
+def solution(N: int, all_nums: list[int]):
+    def merge(left_nums: list[int], right_nums: list[int]) -> list[int]:
+        i = 0
+        j = 0
+        nums = []
+
+        while True:
+            if i == len(left_nums):
+                nums.extend(right_nums[j:])
+                break
+            if j == len(right_nums):
+                nums.extend(left_nums[i:])
+                break
+
+            if left_nums[i] < right_nums[j]:
+                nums.append(left_nums[i])
+                i += 1
+            else:
+                nums.append(right_nums[j])
+                j += 1
         return nums
 
-    mid = n // 2
-    left_nums = merge_sort(nums[:mid])
-    right_nums = merge_sort(nums[mid:])
-    return merge(left_nums, right_nums)
+    def sort(nums: list[int]) -> list[int]:
+        if len(nums) == 1:
+            return nums
 
+        mid = len(nums) // 2
+        return merge(sort(nums[:mid]), sort(nums[mid:]))
 
-def merge(left_nums: list[int], right_nums: list[int]) -> list[int]:
-    n = len(left_nums)
-    m = len(right_nums)
-    i = 0
-    j = 0
-    nums = []
-
-    while True:
-        if i == n:
-            nums.extend(right_nums[j:])
-            break
-        if j == m:
-            nums.extend(left_nums[i:])
-            break
-
-        if left_nums[i] < right_nums[j]:
-            nums.append(left_nums[i])
-            i += 1
-        else:
-            nums.append(right_nums[j])
-            j += 1
-    return nums
+    # BEGIN
+    return '\n'.join(map(str, sort(all_nums)))
 
 
 if __name__ == '__main__':
-    N = int(stdin.readline())
-    nums = [int(stdin.readline())
-            for _ in range(N)]
-
-    print('\n'.join(map(str,
-                        merge_sort(nums))))
+    print(solution(*params()))

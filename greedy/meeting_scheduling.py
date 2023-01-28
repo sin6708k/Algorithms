@@ -1,15 +1,20 @@
 # 회의실 배정
+# Silver I
 # https://www.acmicpc.net/problem/1931
 from sys import stdin
 from heapq import heapify, heappop
 
 
-if __name__ == '__main__':
+def params():
     N = int(stdin.readline())
     meetings = [(end, start)
                 for start, end in (tuple(map(int, stdin.readline().split()))
                                    for _ in range(N))]
     heapify(meetings)
+    return N, meetings
+
+
+def solution(N: int, meetings: list[tuple[int, int]]):
     last = 0
     count = 0
 
@@ -18,5 +23,8 @@ if __name__ == '__main__':
         if last <= start:
             last = end
             count += 1
+    return count
 
-    print(count)
+
+if __name__ == '__main__':
+    print(solution(*params()))

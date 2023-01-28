@@ -1,15 +1,21 @@
 # 연속합
+# Silver II
 # https://www.acmicpc.net/problem/1912
 from sys import stdin
 
 
-if __name__ == '__main__':
+def params():
     N = int(stdin.readline())
     seq = list(map(int, stdin.readline().split()))
-    sum_memo = [0] * N
+    return N, seq
 
+
+def solution(N: int, seq: list[int]):
+    prefix_sum = [0] * N
     for i in range(N):
-        sum_memo[i] = max(sum_memo[i - 1] + seq[i],
-                          seq[i])
+        prefix_sum[i] = max(prefix_sum[i - 1] + seq[i], seq[i])
+    return max(prefix_sum)
 
-    print(max(sum_memo))
+
+if __name__ == '__main__':
+    print(solution(*params()))

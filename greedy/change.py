@@ -1,26 +1,22 @@
 # 거스름돈
+# Bronze II
 # https://www.acmicpc.net/problem/5585
 from sys import stdin
 
 
-def count_coin(money: int) -> int:
-    global coin_iter
+def solution(PRICE: int):
+    PAY = 1000
+    count = 0
+    money = PAY - PRICE
+    coins = [1, 5, 10, 50, 100, 500]
 
-    if money == 0:
-        return 0
-
-    coin = next(coin_iter)
-    if coin > money:
-        return count_coin(money)
-
-    count = money // coin
-    return count_coin(money - coin * count) + count
+    while coins and money > 0:
+        coin = coins.pop()
+        count_of_coin = money // coin
+        count += count_of_coin
+        money -= coin * count_of_coin
+    return count
 
 
 if __name__ == '__main__':
-    PRICE = int(stdin.readline())
-    PAY = 1000
-    MONEY = PAY - PRICE
-    coin_iter = iter([500, 100, 50, 10, 5, 1])
-
-    print(count_coin(MONEY))
+    print(solution(PRICE=int(stdin.readline())))

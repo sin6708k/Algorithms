@@ -1,27 +1,10 @@
 # 트리의 지름
+# Gold II
 # https://www.acmicpc.net/problem/1167
 from sys import stdin
-from collections import deque
 
 
-def search(v: int, dist: int):
-    global graph
-    global path
-    global end
-    global max_dist
-
-    if max_dist < dist:
-        end = v
-        max_dist = dist
-
-    path.append(v)
-    for u, w in graph[v]:
-        if u not in path:
-            search(u, dist + w)
-    path.pop()
-
-
-if __name__ == '__main__':
+def params():
     V = int(stdin.readline())
     graph = [[] for _ in range(V + 1)]  # v = 0 is unused
 
@@ -34,13 +17,37 @@ if __name__ == '__main__':
                 break
             w = next(input_iter)
             graph[v].append((u, w))
+    return V, graph
 
-    path = deque()
-    max_dist = 0
-    search(1, 0)
 
-    path.clear()
-    max_dist = 0
-    search(end, 0)
+def solution(V: int, graph: list[list[int]]):
+    def find_end(start: int):
+        path = set()
+        end = 0
+        dist_to_end = 0
 
-    print(max_dist)
+        def search(v: int, dist: int):
+            nonlocal dist_to_end
+            if dist_to_end < dist:
+                nonlocal end
+                end = v
+                dist_to_end = dist
+
+            path.add(v)
+            for u, w in graph[v]:
+                if u not in path:
+                    search(u, dist + w)
+            path.remove(v)
+
+        # BEGIN
+        search(v=start, dist=0)
+        return end, dist_to_end
+
+    # BEGIN
+    one_end, _ = find_end(start=1)
+    _, diameter = find_end(start=one_end)
+    return diameter
+
+
+if __name__ == '__main__':
+    print(solution(*params()))

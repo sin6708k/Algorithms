@@ -1,4 +1,5 @@
 # 최소 스패닝 트리
+# Gold IV
 # https://www.acmicpc.net/problem/1197
 from sys import stdin
 from heapq import heapify, heappop
@@ -22,12 +23,16 @@ class DisjointSet:
             self.__roots[root_of_u] = root_of_v
 
 
-if __name__ == '__main__':
+def params():
     V, E = map(int, stdin.readline().split())
     edges = [(w, v, u)
              for v, u, w in (map(int, stdin.readline().split())
                              for _ in range(E))]
     heapify(edges)
+    return V, E, edges
+
+
+def solution(V: int, E: int, edges: list[tuple[int, int, int]]):
     connected = DisjointSet(V + 1)
     sum_weight = 0
 
@@ -38,5 +43,8 @@ if __name__ == '__main__':
         if root_of_v != root_of_u:
             connected.union(root_of_v, root_of_u)
             sum_weight += w
+    return sum_weight
 
-    print(sum_weight)
+
+if __name__ == '__main__':
+    print(solution(*params()))

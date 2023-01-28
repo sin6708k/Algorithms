@@ -1,23 +1,23 @@
 # 음계
+# Bronze II
 # https://www.acmicpc.net/problem/2920
 from sys import stdin
 
 
-if __name__ == '__main__':
-    nums = list(map(int, stdin.readline().split()))
-    first = nums[0]
-
-    if first == 1:
-        if all(i == num
-               for i, num in enumerate(nums, 1)):
-            print('ascending')
+def solution(nums: list[int]):
+    if nums[0] == 1:
+        if all(i == num for i, num in enumerate(nums, 1)):
+            return 'ascending'
         else:
-            print('mixed')
-    elif first == 8:
-        if all(i == num
-               for i, num in enumerate(reversed(nums), 1)):
-            print('descending')
+            return 'mixed'
+    elif nums[0] == 8:
+        if all(i == num for i, num in enumerate(reversed(nums), 1)):
+            return 'descending'
         else:
-            print('mixed')
+            return 'mixed'
     else:
-        print('mixed')
+        return 'mixed'
+
+
+if __name__ == '__main__':
+    print(solution(nums=list(map(int, stdin.readline().split()))))
