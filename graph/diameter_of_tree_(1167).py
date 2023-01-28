@@ -20,9 +20,9 @@ def params():
     return V, graph
 
 
-def solution(V: int, graph: list[list[int]]):
+def solution(V: int, graph: list[tuple[int, int]]):
     def find_end(start: int):
-        path = set()
+        visited = set()
         end = 0
         dist_to_end = 0
 
@@ -33,11 +33,10 @@ def solution(V: int, graph: list[list[int]]):
                 end = v
                 dist_to_end = dist
 
-            path.add(v)
+            visited.add(v)
             for u, w in graph[v]:
-                if u not in path:
+                if u not in visited:
                     search(u, dist + w)
-            path.remove(v)
 
         # BEGIN
         search(v=start, dist=0)
