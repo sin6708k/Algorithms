@@ -25,9 +25,8 @@ class DisjointSet:
 
 def params():
     V, E = map(int, stdin.readline().split())
-    edges = [(w, v, u)
-             for v, u, w in (map(int, stdin.readline().split())
-                             for _ in range(E))]
+    edges = [tuple(reversed(tuple(map(int, stdin.readline().split()))))
+             for _ in range(E)]
     heapify(edges)
     return V, E, edges
 
@@ -37,7 +36,7 @@ def solution(V: int, E: int, edges: list[tuple[int, int, int]]):
     sum_weight = 0
 
     while edges:
-        w, v, u = heappop(edges)
+        w, u, v = heappop(edges)
         root_of_v = connected.find(v)
         root_of_u = connected.find(u)
         if root_of_v != root_of_u:

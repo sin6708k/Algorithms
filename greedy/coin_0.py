@@ -7,19 +7,18 @@ from heapq import heapify, heappop
 
 def params():
     N, K = map(int, stdin.readline().split())
-    coins = [(-coin, coin)
-             for coin in (int(stdin.readline())
-                          for _ in range(N))]
+    coins = [-int(stdin.readline())
+             for _ in range(N)]
     heapify(coins)
     return N, K, coins
 
 
-def solution(N: int, K: int, coins: list[tuple[int, int]]):
+def solution(N: int, K: int, coins: list[int]):
     count = 0
     money = K
 
     while coins and money > 0:
-        _, coin = heappop(coins)
+        coin = -heappop(coins)
         count_of_coin = money // coin
         count += count_of_coin
         money -= coin * count_of_coin

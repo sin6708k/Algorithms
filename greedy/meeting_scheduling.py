@@ -7,9 +7,8 @@ from heapq import heapify, heappop
 
 def params():
     N = int(stdin.readline())
-    meetings = [(end, start)
-                for start, end in (tuple(map(int, stdin.readline().split()))
-                                   for _ in range(N))]
+    meetings = [tuple(reversed(tuple(map(int, stdin.readline().split()))))
+                for _ in range(N)]
     heapify(meetings)
     return N, meetings
 
