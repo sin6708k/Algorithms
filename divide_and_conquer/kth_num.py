@@ -11,7 +11,7 @@ def params():
 
 
 # Implemented with merge sort
-def solution(N: int, K: int, nums: list[int]):
+def solution(N: int, K: int, all_nums: list[int]):
     def merge(left_nums: list[int], right_nums: list[int]) -> list[int]:
         i = 0
         j = 0
@@ -41,7 +41,7 @@ def solution(N: int, K: int, nums: list[int]):
         return merge(sort(nums[:mid]), sort(nums[mid:]))
 
     # BEGIN
-    return sort(nums)[K - 1]
+    return sort(all_nums)[K - 1]
 
 
 if __name__ == '__main__':

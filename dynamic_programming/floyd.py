@@ -25,9 +25,8 @@ def solution(N: int, M: int, graph: list[list[int]]):
     for k, v, u in product(range(1, N + 1), repeat=3):
         cost[v][u] = min(cost[v][u], cost[v][k] + cost[k][u])
 
-    return '\n'.join(' '.join(map(str,
-                                  (w if w < 10 ** 9 else 0
-                                   for w in islice(edge, 1, None))))
+    return '\n'.join(' '.join(map(str, (w if w < 10 ** 9 else 0
+                                        for w in islice(edge, 1, None))))
                      for edge in islice(cost, 1, None))
 
 

@@ -7,8 +7,8 @@ from itertools import product
 
 def params():
     N, K = map(int, stdin.readline().split())
-    items = sorted([tuple(map(int, stdin.readline().split()))
-                    for _ in range(N)])
+    items = sorted(tuple(map(int, stdin.readline().split()))
+                   for _ in range(N))
     return N, K, items
 
 
