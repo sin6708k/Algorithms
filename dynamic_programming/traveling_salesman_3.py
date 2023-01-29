@@ -1,26 +1,22 @@
-# 외판원 순회
+# 외판원 순회 3
 # Gold I
 # https://www.acmicpc.net/problem/16991
 from sys import stdin
-from math import log2, floor, dist
 from typing import Iterator
+from math import dist
 
 
 def bit(v: int) -> int:
     return 2 ** v
 
 
-def all_bits(v: int) -> int:
+def full_bit(v: int) -> int:
     return bit(v + 1) - 1
 
 
-def top(bits: int) -> int:
-    return floor(log2(bits)) if bits != 0 else -1
-
-
-def bit_iter(bits: int) -> Iterator[int]:
-    return iter(v for v in range(top(bits) + 1)
-                if bits & bit(v) != 0)
+def bit_iter(bitarray: int) -> Iterator[int]:
+    return iter(v for v in range(bitarray.bit_length() + 1)
+                if bitarray & bit(v) != 0)
 
 
 def params():
@@ -31,7 +27,7 @@ def params():
 
 
 def solution(N: int, vertices: list[tuple[int, int]]):
-    VISITED_ALL = all_bits(N - 1)
+    VISITED_ALL = full_bit(N - 1)
     START = 0
 
     cost = [[10 ** 9] * N
