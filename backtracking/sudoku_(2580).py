@@ -2,12 +2,12 @@
 # Gold IV
 # https://www.acmicpc.net/problem/2580
 from sys import stdin
+from itertools import product
 
 
 def solution(table: list[list[int]]):
     empty_cells = [(x, y)
-                   for y in range(8, -1, -1)
-                   for x in range(8, -1, -1)
+                   for y, x in product(range(8, -1, -1), repeat=2)
                    if table[y][x] == 0]
 
     def can_place(value: int, x: int, y: int) -> bool:
