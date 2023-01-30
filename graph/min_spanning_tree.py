@@ -5,6 +5,14 @@ from sys import stdin
 from heapq import heapify, heappop
 
 
+def params():
+    V, E = map(int, stdin.readline().split())
+    edges = [tuple(reversed(tuple(map(int, stdin.readline().split()))))
+             for _ in range(E)]
+    heapify(edges)
+    return V, E, edges
+
+
 class DisjointSet:
     def __init__(self, n):
         self.__roots = list(range(n))
@@ -21,14 +29,6 @@ class DisjointSet:
             self.__roots[root_of_v] = root_of_u
         else:
             self.__roots[root_of_u] = root_of_v
-
-
-def params():
-    V, E = map(int, stdin.readline().split())
-    edges = [tuple(reversed(tuple(map(int, stdin.readline().split()))))
-             for _ in range(E)]
-    heapify(edges)
-    return V, E, edges
 
 
 def solution(V: int, E: int, edges: list[tuple[int, int, int]]):

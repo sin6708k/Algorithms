@@ -6,6 +6,13 @@ from typing import Iterator
 from math import dist
 
 
+def params():
+    N = int(stdin.readline())
+    vertices = [tuple(map(int, stdin.readline().split()))
+                for _ in range(N)]
+    return N, vertices
+
+
 def bit(v: int) -> int:
     return 2 ** v
 
@@ -17,13 +24,6 @@ def full_bit(v: int) -> int:
 def bit_iter(bitarray: int) -> Iterator[int]:
     return iter(v for v in range(bitarray.bit_length() + 1)
                 if bitarray & bit(v) != 0)
-
-
-def params():
-    N = int(stdin.readline())
-    vertices = [tuple(map(int, stdin.readline().split()))
-                for _ in range(N)]
-    return N, vertices
 
 
 def solution(N: int, vertices: list[tuple[int, int]]):

@@ -5,15 +5,15 @@ from sys import stdin
 from itertools import islice
 
 
-def dist(v: tuple, u: tuple) -> int:
-    return (v[0] - u[0]) ** 2 + (v[1] - u[1]) ** 2
-
-
 def params():
     N = int(stdin.readline())
     all_vertices = sorted([tuple(map(int, stdin.readline().split()))
                            for _ in range(N)])
     return N, all_vertices
+
+
+def dist(v: tuple, u: tuple) -> int:
+    return (v[0] - u[0]) ** 2 + (v[1] - u[1]) ** 2
 
 
 def solution(N: int, all_vertices: list[tuple[int, ...]]):
