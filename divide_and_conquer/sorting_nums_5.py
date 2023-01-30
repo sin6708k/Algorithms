@@ -1,6 +1,6 @@
-# 수 정렬하기 2
+# 수 정렬하기 5
 # Silver V
-# https://www.acmicpc.net/problem/2751
+# https://www.acmicpc.net/problem/15688
 from sys import stdin
 
 

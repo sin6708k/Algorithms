@@ -1,6 +1,6 @@
-# 수 정렬하기 2
+# 수 정렬하기 4
 # Silver V
-# https://www.acmicpc.net/problem/2751
+# https://www.acmicpc.net/problem/11931
 from sys import stdin
 
 
@@ -26,7 +26,7 @@ def solution(N: int, all_nums: list[int]):
                 nums.extend(left_nums[i:])
                 break
 
-            if left_nums[i] <= right_nums[j]:
+            if left_nums[i] >= right_nums[j]:
                 nums.append(left_nums[i])
                 i += 1
             else:
