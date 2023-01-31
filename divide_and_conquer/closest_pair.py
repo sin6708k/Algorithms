@@ -17,7 +17,6 @@ def dist(v: tuple, u: tuple) -> int:
 
 
 def solution(N: int, all_vertices: list[tuple[int, ...]]):
-
     def find_closest_dist(vertices: list[tuple[int, ...]]) -> int:
         if len(vertices) < 2:
             return 10 ** 9

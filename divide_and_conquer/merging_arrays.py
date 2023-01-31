@@ -30,7 +30,6 @@ def solution(N: int, M: int, one_nums: list[int], another_nums: list[int]):
         else:
             nums.append(another_nums[j])
             j += 1
-
     return ' '.join(map(str, nums))
 
 
