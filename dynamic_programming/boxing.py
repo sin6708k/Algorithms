@@ -4,13 +4,13 @@
 from sys import stdin
 
 
-def params():
+def read_input():
     N = int(stdin.readline())
     boxes = list(map(int, stdin.readline().split()))
     return N, boxes
 
 
-def solution(N: int, boxes: list[int]):
+def solve(N: int, boxes: list[int]):
     count = [0] * N
     for i in range(N):
         count[i] = max((count[j] + 1
@@ -21,4 +21,4 @@ def solution(N: int, boxes: list[int]):
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print(solve(*read_input()))

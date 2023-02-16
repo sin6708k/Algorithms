@@ -4,13 +4,13 @@
 from sys import stdin
 
 
-def params():
+def read_input():
     D, INDEX = map(int, stdin.readline().split())
     DX, DY = map(int, stdin.readline().split())
     return D, INDEX, DX, DY
 
 
-def solution(D: int, INDEX: int, DX: int, DY: int):
+def solve(D: int, INDEX: int, DX: int, DY: int):
     token_iter = iter(str(INDEX))
     H = 2 ** D
 
@@ -48,15 +48,19 @@ def solution(D: int, INDEX: int, DX: int, DY: int):
     # BEGIN
     x_i, y_i = search_start(H, 0, 0)
     x_f = x_i + DX
-    y_f = y_i + DY
+    y_f = y_i - DY
 
     if x_f < 0 or x_f >= H:
-        return '-1'
+        return ''
     if y_f < 0 or y_f >= H:
-        return '-1'
+        return ''
 
     return search_index(H, 0, 0, '')
 
 
+def print_output(index: str):
+    print(index if index != '' else -1)
+
+
 if __name__ == '__main__':
-    print(solution(*params()))
+    print_output(solve(*read_input()))

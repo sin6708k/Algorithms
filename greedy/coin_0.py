@@ -5,7 +5,7 @@ from sys import stdin
 from heapq import heapify, heappop
 
 
-def params():
+def read_input():
     N, K = map(int, stdin.readline().split())
     coins = [-int(stdin.readline())
              for _ in range(N)]
@@ -13,7 +13,7 @@ def params():
     return N, K, coins
 
 
-def solution(N: int, K: int, coins: list[int]):
+def solve(N: int, K: int, coins: list[int]):
     count = 0
     money = K
 
@@ -26,4 +26,4 @@ def solution(N: int, K: int, coins: list[int]):
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print(solve(*read_input()))

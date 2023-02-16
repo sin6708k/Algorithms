@@ -5,7 +5,12 @@ from sys import stdin
 from itertools import product
 
 
-def solution(table: list[list[int]]):
+def read_input():
+    return [list(map(int, stdin.readline().rstrip()))
+            for _ in range(9)]
+
+
+def solve(table: list[list[int]]):
     empty_cells = [(x, y)
                    for y, x in product(range(8, -1, -1), repeat=2)
                    if table[y][x] == 0]
@@ -42,10 +47,13 @@ def solution(table: list[list[int]]):
 
     # BEGIN
     fill()
-    return '\n'.join(''.join(map(str, row))
-                     for row in table)
+    return table
+
+
+def print_output(table: list[list[int]]):
+    print('\n'.join(''.join(map(str, row))
+                    for row in table))
 
 
 if __name__ == '__main__':
-    print(solution(table=[list(map(int, stdin.readline().rstrip()))
-                          for _ in range(9)]))
+    print_output(solve(read_input()))

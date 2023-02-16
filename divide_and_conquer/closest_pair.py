@@ -5,7 +5,7 @@ from sys import stdin
 from itertools import islice
 
 
-def params():
+def read_input():
     N = int(stdin.readline())
     all_vertices = sorted([tuple(map(int, stdin.readline().split()))
                            for _ in range(N)])
@@ -16,7 +16,7 @@ def dist(v: tuple, u: tuple) -> int:
     return (v[0] - u[0]) ** 2 + (v[1] - u[1]) ** 2
 
 
-def solution(N: int, all_vertices: list[tuple[int, ...]]):
+def solve(N: int, all_vertices: list[tuple[int, ...]]):
     def find_closest_dist(vertices: list[tuple[int, ...]]) -> int:
         if len(vertices) < 2:
             return 10 ** 9
@@ -56,4 +56,4 @@ def solution(N: int, all_vertices: list[tuple[int, ...]]):
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print(solve(*read_input()))

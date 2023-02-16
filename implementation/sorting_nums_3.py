@@ -4,7 +4,11 @@
 from sys import stdin, stdout
 
 
-def solution(N: int):
+def read_input():
+    return int(stdin.readline())
+
+
+def solve(N: int):
     counter = [0] * 10001
 
     for _ in range(N):
@@ -17,4 +21,4 @@ def solution(N: int):
 
 
 if __name__ == '__main__':
-    solution(N=int(stdin.readline()))
+    solve(read_input())

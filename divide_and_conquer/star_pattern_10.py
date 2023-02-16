@@ -4,7 +4,11 @@
 from sys import stdin
 
 
-def solution(N: int):
+def read_input():
+    return int(stdin.readline())
+
+
+def solve(N: int):
     printing = [''] * N
 
     def rect(h: int, y: int):
@@ -36,8 +40,12 @@ def solution(N: int):
 
     # BEGIN
     rect(N, 0)
-    return '\n'.join(printing)
+    return printing
+
+
+def print_output(printing: list[str]):
+    print('\n'.join(printing))
 
 
 if __name__ == '__main__':
-    print(solution(N=int(stdin.readline())))
+    print_output(solve(read_input()))

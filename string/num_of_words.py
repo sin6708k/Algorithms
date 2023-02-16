@@ -4,9 +4,13 @@
 from sys import stdin
 
 
-def solution(words: list[str]):
-    return len(words)
+def read_input():
+    return stdin.readline()
+
+
+def solve(string: str):
+    return len(string.split())
 
 
 if __name__ == '__main__':
-    print(solution(words=stdin.readline().split()))
+    print(solve(read_input()))

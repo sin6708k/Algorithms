@@ -4,22 +4,22 @@
 from sys import stdin
 
 
-def params():
+def read_input():
     N = int(stdin.readline())
-    graph = [list(map(int, stdin.readline().split()))
+    graph = [list(map(bool, map(int, stdin.readline().split())))
              for _ in range(N)]
     return N, graph
 
 
-def solution(N: int, graph: list[list[int]]):
-    connected = [[0] * N
+def solve(N: int, graph: list[list[bool]]):
+    connected = [[False] * N
                  for _ in range(N)]
 
     def find_path(start: int, v: int):
         for u in range(N):
-            if graph[v][u] == 0 or connected[start][u] == 1:
+            if not graph[v][u] or connected[start][u]:
                 continue
-            connected[start][u] = 1
+            connected[start][u] = True
             find_path(start, u)
 
     def find_all_paths():
@@ -28,9 +28,13 @@ def solution(N: int, graph: list[list[int]]):
 
     # BEGIN
     find_all_paths()
-    return '\n'.join(' '.join(map(str, (w for w in edge)))
-                     for edge in connected)
+    return connected
+
+
+def print_output(connected: list[list[bool]]):
+    print('\n'.join(' '.join(map(str, map(int, edge)))
+                    for edge in connected))
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print_output(solve(*read_input()))

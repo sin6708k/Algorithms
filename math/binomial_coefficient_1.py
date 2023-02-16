@@ -5,14 +5,14 @@ from sys import stdin
 from math import comb
 
 
-def params():
+def read_input():
     N, K = map(int, stdin.readline().split())
     return N, K
 
 
-def solution(N: int, K: int):
+def solve(N: int, K: int):
     return comb(N, K)
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print(solve(*read_input()))

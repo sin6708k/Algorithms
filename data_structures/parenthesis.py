@@ -4,20 +4,20 @@
 from sys import stdin
 
 
-def params():
+def read_input():
     T = int(stdin.readline())
     strings = [stdin.readline().rstrip()
                for _ in range(T)]
     return T, strings
 
 
-def solution(N: int, strings: list[str]):
+def solve(N: int, strings: list[str]):
     def valid(string: str) -> bool:
         stack = []
         for char in string:
             if char == '(':
                 stack.append(char)
-            else:
+            if char == ')':
                 if stack:
                     stack.pop()
                 else:
@@ -25,9 +25,13 @@ def solution(N: int, strings: list[str]):
         return False if stack else True
 
     # BEGIN
-    return '\n'.join('YES' if valid(string) else 'NO'
-                     for string in strings)
+    return list(map(valid, strings))
+
+
+def print_output(strings_valid: list[bool]):
+    print('\n'.join('YES' if string_valid else 'NO'
+                    for string_valid in strings_valid))
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print_output(solve(*read_input()))

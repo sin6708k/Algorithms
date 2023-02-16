@@ -4,14 +4,14 @@
 from sys import stdin
 
 
-def params():
+def read_input():
     N, K = map(int, stdin.readline().split())
     all_nums = list(map(int, stdin.readline().split()))
     return N, K, all_nums
 
 
 # Implemented with merge sort
-def solution(N: int, K: int, all_nums: list[int]):
+def solve(N: int, K: int, all_nums: list[int]):
     def merge(left_nums: list[int], right_nums: list[int]) -> list[int]:
         i = 0
         j = 0
@@ -45,4 +45,4 @@ def solution(N: int, K: int, all_nums: list[int]):
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print(solve(*read_input()))

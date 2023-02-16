@@ -5,7 +5,7 @@ from sys import stdin
 from collections import deque
 
 
-def params():
+def read_input():
     N = int(stdin.readline())
     graph = [[] for _ in range(N + 1)]  # v = 0 is unused
 
@@ -16,7 +16,7 @@ def params():
     return N, graph
 
 
-def solution(N: int, graph: list[tuple[int, int]]):
+def solve(N: int, graph: list[tuple[int, int]]):
     def find_end(start: int):
         visited = set()
         to_visit = deque([(start, 0)])
@@ -43,4 +43,4 @@ def solution(N: int, graph: list[tuple[int, int]]):
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print(solve(*read_input()))

@@ -4,14 +4,14 @@
 from sys import stdin
 
 
-def params():
+def read_input():
     K = int(stdin.readline())
     nums = [int(stdin.readline())
             for _ in range(K)]
     return K, nums
 
 
-def solution(N: int, nums: list[int]):
+def solve(N: int, nums: list[int]):
     stack = []
     for num in nums:
         if num != 0:
@@ -22,4 +22,4 @@ def solution(N: int, nums: list[int]):
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print(solve(*read_input()))

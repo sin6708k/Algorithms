@@ -4,14 +4,14 @@
 from sys import stdin
 
 
-def params():
+def read_input():
     N = int(stdin.readline())
     all_data = [stdin.readline().rstrip()
                 for _ in range(N)]
     return N, all_data
 
 
-def solution(N: int, all_data: list[str]):
+def solve(N: int, all_data: list[str]):
     def compress(data: list[str]) -> str:
         if not any('1' in row for row in data):
             return '0'
@@ -35,4 +35,4 @@ def solution(N: int, all_data: list[str]):
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print(solve(*read_input()))

@@ -5,7 +5,7 @@ from sys import stdin
 from collections import deque
 
 
-def params():
+def read_input():
     N, M, V = map(int, stdin.readline().split())
     graph = [[] for _ in range(N + 1)]  # v = 0 is unused
 
@@ -18,7 +18,7 @@ def params():
     return N, M, V, graph
 
 
-def solution(N: int, M: int, V: int, graph: list[list[int]]):
+def solve(N: int, M: int, V: int, graph: list[list[int]]):
     def dfs(start: int):
         visited = set()
         log = []
@@ -33,7 +33,7 @@ def solution(N: int, M: int, V: int, graph: list[list[int]]):
 
         # BEGIN
         search(v=start)
-        return ' '.join(map(str, log))
+        return log
 
     def bfs(start: int):
         visited = set()
@@ -47,11 +47,16 @@ def solution(N: int, M: int, V: int, graph: list[list[int]]):
             to_visit.extend(u for u in graph[v]
                             if u not in visited
                             and u not in to_visit)
-        return ' '.join(map(str, log))
+        return log
 
     # BEGIN
-    return '\n'.join([dfs(start=V), bfs(start=V)])
+    return dfs(start=V), bfs(start=V)
+
+
+def print_output(dfs_log: list[int], bfs_log: list[int]):
+    print(' '.join(map(str, dfs_log)))
+    print(' '.join(map(str, bfs_log)))
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print_output(*solve(*read_input()))

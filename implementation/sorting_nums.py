@@ -4,7 +4,7 @@
 from sys import stdin
 
 
-def params():
+def read_input():
     N = int(stdin.readline())
     nums = [int(stdin.readline())
             for _ in range(N)]
@@ -12,14 +12,18 @@ def params():
 
 
 # Implemented with insertion sort
-def solution(N: int, nums: list[int]):
+def solve(N: int, nums: list[int]):
     for i in range(1, N):
         for j in range(i - 1, -1, -1):
             if nums[j] < nums[j + 1]:
                 break
             nums[j], nums[j + 1] = nums[j + 1], nums[j]
-    return '\n'.join(map(str, nums))
+    return nums
+
+
+def print_output(nums: list[int]):
+    print('\n'.join(map(str, nums)))
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print_output(solve(*read_input()))

@@ -4,11 +4,20 @@
 from sys import stdin
 
 
-def solution(nums: list[int]):
-    return '\n'.join(map(str, max((num, i)
-                                  for i, num in enumerate(nums, 1))))
+def read_input():
+    return [int(stdin.readline())
+            for _ in range(9)]
+
+
+def solve(nums: list[int]):
+    return max((num, i)
+               for i, num in enumerate(nums, 1))
+
+
+def print_output(max_num: int, index: int):
+    print(max_num)
+    print(index)
 
 
 if __name__ == '__main__':
-    print(solution(nums=[int(stdin.readline())
-                         for _ in range(9)]))
+    print_output(*solve(read_input()))

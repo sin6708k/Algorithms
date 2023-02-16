@@ -5,7 +5,11 @@ from sys import stdin
 from collections import Counter
 
 
-def solution(words: str):
+def read_input():
+    return stdin.readline().rstrip()
+
+
+def solve(words: str):
     counter = Counter(words.upper()).most_common()
 
     if len(counter) >= 2:
@@ -24,4 +28,4 @@ def solution(words: str):
 
 
 if __name__ == '__main__':
-    print(solution(words=stdin.readline().rstrip()))
+    print(solve(read_input()))

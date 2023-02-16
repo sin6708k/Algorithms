@@ -4,7 +4,7 @@
 from sys import stdin
 
 
-def params():
+def read_input():
     N = int(stdin.readline())
     all_nums = [int(stdin.readline())
                 for _ in range(N)]
@@ -12,7 +12,7 @@ def params():
 
 
 # Implemented by merge sort
-def solution(N: int, all_nums: list[int]):
+def solve(N: int, all_nums: list[int]):
     def merge(left_nums: list[int], right_nums: list[int]) -> list[int]:
         i = 0
         j = 0
@@ -42,8 +42,12 @@ def solution(N: int, all_nums: list[int]):
         return merge(sort(nums[:mid]), sort(nums[mid:]))
 
     # BEGIN
-    return '\n'.join(map(str, sort(all_nums)))
+    return sort(all_nums)
+
+
+def print_output(nums: list[int]):
+    print('\n'.join(map(str, nums)))
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print_output(solve(*read_input()))

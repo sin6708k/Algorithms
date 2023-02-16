@@ -5,7 +5,11 @@ from sys import stdin
 from collections import deque
 
 
-def solution(N: int) -> str:
+def read_input():
+    return int(stdin.readline())
+
+
+def solve(N: int):
     log = deque()
 
     def move(index: int, origin: int, waypoint: int, dest: int):
@@ -19,8 +23,12 @@ def solution(N: int) -> str:
     # BEGIN
     move(N, 1, 2, 3)
     log.appendleft(len(log))
-    return '\n'.join(map(str, log))
+    return log
+
+
+def print_output(log: deque[str]):
+    print('\n'.join(map(str, log)))
 
 
 if __name__ == '__main__':
-    print(solution(N=int(stdin.readline())))
+    print_output(solve(read_input()))

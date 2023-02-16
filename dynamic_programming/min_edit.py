@@ -5,13 +5,13 @@ from sys import stdin
 from itertools import product
 
 
-def params():
+def read_input():
     A = stdin.readline()
     B = stdin.readline()
     return A, B
 
 
-def solution(A: str, B: str):
+def solve(A: str, B: str):
     dist = [[i if j == 0 else
              j if i == 0 else
              0 for j in range(len(B) + 1)]
@@ -25,4 +25,4 @@ def solution(A: str, B: str):
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print(solve(*read_input()))

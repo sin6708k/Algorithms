@@ -4,24 +4,25 @@
 from sys import stdin
 
 
-def param():
+def read_input():
     triangles = []
     while True:
-        sides = sorted(map(int, stdin.readline().split()))
-        if sides == [0, 0, 0]:
+        triangle = tuple(map(int, stdin.readline().split()))
+        if triangle == (0, 0, 0):
             break
-        triangles.append(sides)
+        triangles.append(triangle)
     return triangles
 
 
-def solution(triangles: list[list[int]]):
-    def right(triangle: list[int]) -> bool:
-        return triangle[0] ** 2 + triangle[1] ** 2 == triangle[2] ** 2
+def solve(triangles: list[tuple[int, ...]]):
+    return [triangle[0] ** 2 + triangle[1] ** 2 == triangle[2] ** 2
+            for triangle in map(sorted, triangles)]
 
-    # BEGIN
-    return '\n'.join('right' if right(triangle) else 'wrong'
-                     for triangle in triangles)
+
+def print_output(triangles_right: list[bool]):
+    print('\n'.join('right' if triangle_right else 'wrong'
+                    for triangle_right in triangles_right))
 
 
 if __name__ == '__main__':
-    print(solution(param()))
+    print_output(solve(read_input()))

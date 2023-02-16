@@ -5,7 +5,7 @@ from sys import stdin
 from heapq import heapify, heappop
 
 
-def params():
+def read_input():
     N = int(stdin.readline())
     meetings = [tuple(reversed(tuple(map(int, stdin.readline().split()))))
                 for _ in range(N)]
@@ -13,7 +13,7 @@ def params():
     return N, meetings
 
 
-def solution(N: int, meetings: list[tuple[int, int]]):
+def solve(N: int, meetings: list[tuple[int, int]]):
     last = 0
     count = 0
 
@@ -26,4 +26,4 @@ def solution(N: int, meetings: list[tuple[int, int]]):
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print(solve(*read_input()))

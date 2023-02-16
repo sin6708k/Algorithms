@@ -6,7 +6,7 @@ from heapq import heappush, heappop
 from itertools import islice
 
 
-def params():
+def read_input():
     V, E = map(int, stdin.readline().split())
     K = int(stdin.readline())
     graph = [[] for _ in range(V + 1)]  # v = 0 is unused
@@ -17,7 +17,7 @@ def params():
     return V, E, K, graph
 
 
-def solution(V: int, E: int, K: int, graph: list[tuple[int, int]]):
+def solve(V: int, E: int, K: int, graph: list[tuple[int, int]]):
     dists = [10 ** 9] * (V + 1)
     to_visit = []
 
@@ -33,10 +33,13 @@ def solution(V: int, E: int, K: int, graph: list[tuple[int, int]]):
             if dist + w < dists[u]:
                 dists[u] = dist + w
                 heappush(to_visit, (dist + w, u))
+    return dists
 
-    return '\n'.join((str(dist) if dist < 10 ** 9 else 'INF'
-                      for dist in islice(dists, 1, None)))
+
+def print_output(dists: list[int]):
+    print('\n'.join((str(dist) if dist < 10 ** 9 else 'INF'
+                     for dist in islice(dists, 1, None))))
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print_output(solve(*read_input()))

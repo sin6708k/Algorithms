@@ -4,7 +4,11 @@
 from sys import stdin
 
 
-def solution(PRICE: int):
+def read_input():
+    return int(stdin.readline())
+
+
+def solve(PRICE: int):
     PAY = 1000
     count = 0
     money = PAY - PRICE
@@ -19,4 +23,4 @@ def solution(PRICE: int):
 
 
 if __name__ == '__main__':
-    print(solution(PRICE=int(stdin.readline())))
+    print(solve(read_input()))

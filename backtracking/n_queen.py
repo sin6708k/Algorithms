@@ -4,7 +4,11 @@
 from sys import stdin
 
 
-def solution(N: int):
+def read_input():
+    return int(stdin.readline())
+
+
+def solve(N: int):
     placed_on_cols = set()
     board = [0] * N
     count = 0
@@ -36,4 +40,4 @@ def solution(N: int):
 
 
 if __name__ == '__main__':
-    print(solution(N=int(stdin.readline())))
+    print(solve(read_input()))

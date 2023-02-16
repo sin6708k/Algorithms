@@ -4,7 +4,7 @@
 from sys import stdin
 
 
-def params():
+def read_input():
     N = int(stdin.readline())
     nodes = {}
 
@@ -14,7 +14,7 @@ def params():
     return N, nodes
 
 
-def solution(N: int, tree: dict[str, tuple[str, str]]):
+def solve(N: int, tree: dict[str, tuple[str, str]]):
     def preorder():
         log = []
 
@@ -28,7 +28,7 @@ def solution(N: int, tree: dict[str, tuple[str, str]]):
 
         # BEGIN
         search('A')
-        return ''.join(map(str, log))
+        return log
 
     def inorder():
         log = []
@@ -43,7 +43,7 @@ def solution(N: int, tree: dict[str, tuple[str, str]]):
 
         # BEGIN
         search('A')
-        return ''.join(map(str, log))
+        return log
 
     def postorder():
         log = []
@@ -58,11 +58,16 @@ def solution(N: int, tree: dict[str, tuple[str, str]]):
 
         # BEGIN
         search('A')
-        return ''.join(map(str, log))
+        return log
 
     # BEGIN
-    return '\n'.join([preorder(), inorder(), postorder()])
+    return preorder(), inorder(), postorder()
+
+
+def print_output(preorder_log: list[str], inorder_log: list[str], postorder_log: list[str]):
+    print('\n'.join(''.join(map(str, log))
+                    for log in (preorder_log, inorder_log, postorder_log)))
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print_output(*solve(*read_input()))

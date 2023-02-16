@@ -5,7 +5,7 @@ from sys import stdin
 from typing import Iterator
 
 
-def params():
+def read_input():
     N = int(stdin.readline())
     graph = [[w if w != 0 else
               10 ** 9 if v != u else 0
@@ -22,12 +22,12 @@ def full_bit(v: int) -> int:
     return bit(v + 1) - 1
 
 
-def bit_iter(bitarray: int) -> Iterator[int]:
-    return iter(v for v in range(bitarray.bit_length() + 1)
-                if bitarray & bit(v) != 0)
+def bit_iter(mask: int) -> Iterator[int]:
+    return iter(v for v in range(mask.bit_length() + 1)
+                if mask & bit(v) != 0)
 
 
-def solution(N: int, graph: list[list[int]]):
+def solve(N: int, graph: list[list[int]]):
     VISITED_ALL = full_bit(N - 1)
     START = 0
 
@@ -47,4 +47,4 @@ def solution(N: int, graph: list[list[int]]):
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print(solve(*read_input()))

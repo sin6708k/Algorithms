@@ -4,7 +4,7 @@
 from sys import stdin
 
 
-def params():
+def read_input():
     N = int(stdin.readline())
     graph = [[w if w != 0 else
               10 ** 9 if v != u else 0
@@ -13,7 +13,7 @@ def params():
     return N, graph
 
 
-def solution(N: int, graph: list[list[int]]):
+def solve(N: int, graph: list[list[int]]):
     path = []
     min_cost = 10 ** 9
 
@@ -38,4 +38,4 @@ def solution(N: int, graph: list[list[int]]):
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print(solve(*read_input()))

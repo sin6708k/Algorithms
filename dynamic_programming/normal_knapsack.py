@@ -5,14 +5,14 @@ from sys import stdin
 from itertools import product
 
 
-def params():
+def read_input():
     N, K = map(int, stdin.readline().split())
     items = sorted(tuple(map(int, stdin.readline().split()))
                    for _ in range(N))
     return N, K, items
 
 
-def solution(N: int, K: int, items: list[int]):
+def solve(N: int, K: int, items: list[int]):
     value = [[0] * (K + 1)
              for _ in range(N + 1)]
 
@@ -27,4 +27,4 @@ def solution(N: int, K: int, items: list[int]):
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print(solve(*read_input()))

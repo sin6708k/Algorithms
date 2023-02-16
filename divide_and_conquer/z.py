@@ -4,12 +4,12 @@
 from sys import stdin
 
 
-def params():
+def read_input():
     N, R, C = map(int, stdin.readline().split())
     return N, R, C
 
 
-def solution(N: int, R: int, C: int):
+def solve(N: int, R: int, C: int):
     H = 2 ** N
 
     def find_dist(h: int, x: int, y: int, dist: int) -> int:
@@ -34,4 +34,4 @@ def solution(N: int, R: int, C: int):
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print(solve(*read_input()))

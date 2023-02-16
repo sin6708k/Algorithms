@@ -4,7 +4,7 @@
 from sys import stdin
 
 
-def params():
+def read_input():
     N = int(stdin.readline())
     cards = sorted(map(int, stdin.readline().split()))
     M = int(stdin.readline())
@@ -13,23 +13,27 @@ def params():
 
 
 # Implemented with binary search
-def solution(N: int, cards: list[int], M: int, nums: list[int]):
-    def exist(num: int, left: int, right: int) -> int:
+def solve(N: int, cards: list[int], M: int, nums: list[int]):
+    def exist(num: int, left: int, right: int) -> bool:
         if left >= right:
-            return 0
+            return False
         mid = (left + right) // 2
 
         if num == cards[mid]:
-            return 1
+            return True
         elif num < cards[mid]:
             return exist(num, left, mid)
         else:
             return exist(num, mid + 1, right)
 
     # BEGIN
-    return ' '.join(map(str, (exist(num, 0, N)
-                              for num in nums)))
+    return [exist(num, 0, N)
+            for num in nums]
+
+
+def print_output(nums_exist: list[bool]):
+    print(' '.join(map(str, map(int, nums_exist))))
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print_output(solve(*read_input()))

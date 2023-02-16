@@ -4,7 +4,11 @@
 from sys import stdin
 
 
-def solution(nums: list[int]):
+def read_input():
+    return list(map(int, stdin.readline().split()))
+
+
+def solve(nums: list[int]):
     if nums[0] == 1:
         if all(i == num for i, num in enumerate(nums, 1)):
             return 'ascending'
@@ -20,4 +24,4 @@ def solution(nums: list[int]):
 
 
 if __name__ == '__main__':
-    print(solution(nums=list(map(int, stdin.readline().split()))))
+    print(solve(read_input()))

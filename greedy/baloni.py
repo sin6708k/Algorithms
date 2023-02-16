@@ -4,13 +4,13 @@
 from sys import stdin
 
 
-def params():
+def read_input():
     N = int(stdin.readline())
     balloons = list(map(int, stdin.readline().split()))
     return N, balloons
 
 
-def solution(N: int, balloons: list[int]):
+def solve(N: int, balloons: list[int]):
     arrows = [0] * 1000001
 
     for h in balloons:
@@ -21,4 +21,4 @@ def solution(N: int, balloons: list[int]):
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print(solve(*read_input()))

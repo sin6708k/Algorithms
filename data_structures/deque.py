@@ -5,14 +5,14 @@ from sys import stdin
 from collections import deque
 
 
-def params():
+def read_input():
     N = int(stdin.readline())
     instructions = [stdin.readline().split()
                     for _ in range(N)]
     return N, instructions
 
 
-def solution(N: int, instructions: list[list[str]]):
+def solve(N: int, instructions: list[list[str]]):
     dequeue = deque()
     log = []
 
@@ -58,9 +58,12 @@ def solution(N: int, instructions: list[list[str]]):
             log.append(front())
         if instruction[0] == 'back':
             log.append(back())
-    return '\n'.join(map(str, log))
+    return log
+
+
+def print_output(log: list[int]):
+    print('\n'.join(map(str, log)))
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
-
+    print_output(solve(*read_input()))

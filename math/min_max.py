@@ -4,15 +4,19 @@
 from sys import stdin
 
 
-def params():
+def read_input():
     N = int(stdin.readline())
     nums = list(map(int, stdin.readline().split()))
     return N, nums
 
 
-def solution(N: int, nums: list[int]):
-    return ' '.join(map(str, [min(nums), max(nums)]))
+def solve(N: int, nums: list[int]):
+    return min(nums), max(nums)
+
+
+def print_output(min_num: int, max_num: int):
+    print(min_num, max_num)
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print_output(*solve(*read_input()))

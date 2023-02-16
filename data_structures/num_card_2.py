@@ -5,7 +5,7 @@ from sys import stdin
 from collections import Counter
 
 
-def params():
+def read_input():
     N = int(stdin.readline())
     cards = list(map(int, stdin.readline().split()))
     M = int(stdin.readline())
@@ -13,11 +13,14 @@ def params():
     return N, cards, M, nums
 
 
-def solution(N: int, cards: list[int], M: int, nums: list[int]):
+def solve(N: int, cards: list[int], M: int, nums: list[int]):
     counter = Counter(cards)
-    return ' '.join(map(str, (counter[num]
-                              for num in nums)))
+    return [counter[num] for num in nums]
+
+
+def print_output(counter: list[int]):
+    print(' '.join(map(str, counter)))
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print_output(solve(*read_input()))

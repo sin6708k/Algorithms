@@ -8,7 +8,7 @@ def member_tuple(split: list[str]) -> tuple[int, str]:
     return int(split[0]), split[1]
 
 
-def params():
+def read_input():
     N = int(stdin.readline())
     all_members = [member_tuple(stdin.readline().split())
                    for _ in range(N)]
@@ -16,28 +16,28 @@ def params():
 
 
 # Implemented by merge sort
-def solution(N: int, all_members: list[tuple[int, str]]):
+def solve(N: int, all_members: list[tuple[int, str]]):
     def merge(left_members: list[tuple[int, str]],
               right_members: list[tuple[int, str]]) -> list[tuple[int, str]]:
         i = 0
         j = 0
-        nums = []
+        members = []
 
         while True:
             if i == len(left_members):
-                nums.extend(right_members[j:])
+                members.extend(right_members[j:])
                 break
             if j == len(right_members):
-                nums.extend(left_members[i:])
+                members.extend(left_members[i:])
                 break
 
             if left_members[i][0] <= right_members[j][0]:
-                nums.append(left_members[i])
+                members.append(left_members[i])
                 i += 1
             else:
-                nums.append(right_members[j])
+                members.append(right_members[j])
                 j += 1
-        return nums
+        return members
 
     def sort(members: list[tuple[int, str]]) -> list[tuple[int, str]]:
         if len(members) == 1:
@@ -47,9 +47,13 @@ def solution(N: int, all_members: list[tuple[int, str]]):
         return merge(sort(members[:mid]), sort(members[mid:]))
 
     # BEGIN
-    return '\n'.join(' '.join(map(str, member))
-                     for member in sort(all_members))
+    return sort(all_members)
+
+
+def print_output(members: list[tuple[int, str]]):
+    print('\n'.join(' '.join(map(str, member))
+                    for member in members))
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print_output(solve(*read_input()))

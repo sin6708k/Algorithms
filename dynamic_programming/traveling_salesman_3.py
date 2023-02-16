@@ -6,7 +6,7 @@ from typing import Iterator
 from math import dist
 
 
-def params():
+def read_input():
     N = int(stdin.readline())
     vertices = [tuple(map(int, stdin.readline().split()))
                 for _ in range(N)]
@@ -17,17 +17,17 @@ def bit(v: int) -> int:
     return 2 ** v
 
 
-def full_bit(v: int) -> int:
+def full_mask(v: int) -> int:
     return bit(v + 1) - 1
 
 
-def bit_iter(bitarray: int) -> Iterator[int]:
-    return iter(v for v in range(bitarray.bit_length() + 1)
-                if bitarray & bit(v) != 0)
+def bit_iter(mask: int) -> Iterator[int]:
+    return iter(v for v in range(mask.bit_length() + 1)
+                if mask & bit(v) != 0)
 
 
-def solution(N: int, vertices: list[tuple[int, int]]):
-    VISITED_ALL = full_bit(N - 1)
+def solve(N: int, vertices: list[tuple[int, int]]):
+    VISITED_ALL = full_mask(N - 1)
     START = 0
 
     cost = [[10 ** 9] * N
@@ -46,4 +46,4 @@ def solution(N: int, vertices: list[tuple[int, int]]):
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print(solve(*read_input()))

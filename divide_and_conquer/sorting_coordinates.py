@@ -4,7 +4,7 @@
 from sys import stdin
 
 
-def params():
+def read_input():
     N = int(stdin.readline())
     all_coordinates = [tuple(map(int, stdin.readline().split()))
                        for _ in range(N)]
@@ -12,28 +12,28 @@ def params():
 
 
 # Implemented by merge sort
-def solution(N: int, all_coordinates: list[tuple[int, int]]):
+def solve(N: int, all_coordinates: list[tuple[int, int]]):
     def merge(left_coordinates: list[tuple[int, int]],
               right_coordinates: list[tuple[int, int]]) -> list[tuple[int, int]]:
         i = 0
         j = 0
-        nums = []
+        coordinates = []
 
         while True:
             if i == len(left_coordinates):
-                nums.extend(right_coordinates[j:])
+                coordinates.extend(right_coordinates[j:])
                 break
             if j == len(right_coordinates):
-                nums.extend(left_coordinates[i:])
+                coordinates.extend(left_coordinates[i:])
                 break
 
             if left_coordinates[i] <= right_coordinates[j]:
-                nums.append(left_coordinates[i])
+                coordinates.append(left_coordinates[i])
                 i += 1
             else:
-                nums.append(right_coordinates[j])
+                coordinates.append(right_coordinates[j])
                 j += 1
-        return nums
+        return coordinates
 
     def sort(coordinates: list[tuple[int, int]]) -> list[tuple[int, int]]:
         if len(coordinates) == 1:
@@ -43,9 +43,13 @@ def solution(N: int, all_coordinates: list[tuple[int, int]]):
         return merge(sort(coordinates[:mid]), sort(coordinates[mid:]))
 
     # BEGIN
-    return '\n'.join(' '.join(map(str, coordinate))
-                     for coordinate in sort(all_coordinates))
+    return sort(all_coordinates)
+
+
+def print_output(coordinates: list[tuple[int, int]]):
+    print('\n'.join(' '.join(map(str, coordinate))
+                    for coordinate in coordinates))
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print_output(solve(*read_input()))

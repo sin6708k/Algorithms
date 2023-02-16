@@ -4,7 +4,7 @@
 from sys import stdin
 
 
-def params():
+def read_input():
     V = int(stdin.readline())
     graph = [[] for _ in range(V + 1)]  # v = 0 is unused
 
@@ -20,7 +20,7 @@ def params():
     return V, graph
 
 
-def solution(V: int, graph: list[tuple[int, int]]):
+def solve(V: int, graph: list[tuple[int, int]]):
     def find_end(start: int):
         visited = set()
         end = 0
@@ -49,4 +49,4 @@ def solution(V: int, graph: list[tuple[int, int]]):
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print(solve(*read_input()))

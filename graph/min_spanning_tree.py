@@ -5,7 +5,7 @@ from sys import stdin
 from heapq import heapify, heappop
 
 
-def params():
+def read_input():
     V, E = map(int, stdin.readline().split())
     edges = [tuple(reversed(tuple(map(int, stdin.readline().split()))))
              for _ in range(E)]
@@ -31,7 +31,7 @@ class DisjointSet:
             self.__roots[root_of_u] = root_of_v
 
 
-def solution(V: int, E: int, edges: list[tuple[int, int, int]]):
+def solve(V: int, E: int, edges: list[tuple[int, int, int]]):
     connected = DisjointSet(V + 1)
     sum_weight = 0
 
@@ -46,4 +46,4 @@ def solution(V: int, E: int, edges: list[tuple[int, int, int]]):
 
 
 if __name__ == '__main__':
-    print(solution(*params()))
+    print(solve(*read_input()))
