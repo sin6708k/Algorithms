@@ -2,7 +2,6 @@
 # Silver I
 # https://www.acmicpc.net/problem/11729
 from sys import stdin
-from collections import deque
 
 
 def read_input():
@@ -10,7 +9,7 @@ def read_input():
 
 
 def solve(N: int):
-    log = deque()
+    log = []
 
     def move(index: int, origin: int, waypoint: int, dest: int):
         if index == 0:
@@ -22,12 +21,12 @@ def solve(N: int):
 
     # BEGIN
     move(N, 1, 2, 3)
-    log.appendleft(len(log))
     return log
 
 
-def print_output(log: deque[str]):
-    print('\n'.join(map(str, log)))
+def print_output(log: list[str]):
+    print(len(log))
+    print('\n'.join(log))
 
 
 if __name__ == '__main__':
